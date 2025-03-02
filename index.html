@@ -193,5 +193,26 @@
 	window.location.href = "signup.html";
 	}
 	</script>
+	  <script type="module">
+  // Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, set, push, get } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+  // Your Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyARgeikrhrZb_r5agIRag...",
+    authDomain: "truevote-5be7c.firebaseapp.com",
+    databaseURL: "https://truevote-5be7c-default-rtdb.firebaseio.com",
+    projectId: "truevote-5be7c",
+    storageBucket: "truevote-5be7c.appspot.com",
+    messagingSenderId: "754331659689",
+    appId: "1:754331659689:web:64914424c...",
+    measurementId: "G-5LJDMLL64"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+</script>
   </body>
   </html>
