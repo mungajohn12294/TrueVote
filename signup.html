@@ -87,5 +87,27 @@
     }
   }
 </script>
+	<script>
+  function registerVoter() {
+    var voterID = document.getElementById("voterID").value;
+    var phone = document.getElementById("phone").value;
+
+    const db = getDatabase();
+    const voterRef = ref(db, 'voters/' + voterID);
+
+    set(voterRef, {
+      phone: phone,
+      time: new Date().toISOString()
+    }).then(() => {
+      alert("Voter Registered Successfully!");
+    }).catch((error) => {
+      console.error("Error: ", error);
+    });
+  }
+</script>
+
+<input type="text" id="voterID" placeholder="Voter ID">
+<input type="text" id="phone" placeholder="Phone Number">
+<button onclick="registerVoter()">Register</button>  
   </body>
 </html>
