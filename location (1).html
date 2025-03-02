@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Location Selection</title>
+<style>
+  body {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
+  .box {
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Arial, sans-serif;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    border-radius: 50px;
+    margin-top: 100px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  }
+  .box select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-radius: 10px;
+  }
+  .box button {
+    background-color: #01974D;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .footer {
+    margin-top: 150px;
+  }
+</style>
+  </head>
+  <body>
+	<div class="box">
+	  <h2>Select Your Location</h2>
+
+	  <select id="region" onchange="loadCounties()">
+		<option>Select Region</option>
+		<option>Central</option>
+		<option>Nairobi</option>
+		<option>Coast</option>
+		<option>Eastern</option>
+		<option>Western</option>
+		<option>Nyanza</option>
+		<option>Rift Valley</option>
+		<option>North Eastern</option>
+	  </select>
+
+	  <select id="county" onchange="loadConstituencies()">
+		<option>Select County</option>
+	  </select>
+
+	  <select id="constituency" onchange="loadWards()">
+		<option>Select Constituency</option>
+	  </select>
+
+	  <select id="ward">
+		<option>Select Ward</option>
+	  </select>
+
+	  <button onclick="confirmLocation()">Confirm Location</button>
+	</div>
+
+	<footer>
+	  <div class="footer">
+		© 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
+	  </div>
+	</footer>
+
+<script>
+const locations = {
+  "Central": {
+    "Kiambu": {
+      "Thika Town": ["Township", "Hospital", "Kamenu", "Gatuanyaga"],
+      "Ruiru": ["Gitothua", "Biashara", "Mwiki", "Mugutha"]
+    },
+    "Murang'a": {
+      "Kandara": ["Muruka", "Ithiru", "Ng'araria"],
+      "Kiharu": ["Mugoiri", "Murarandia", "Wangu"]
+    }
+  },
+  "Nairobi": {
+    "Nairobi": {
+      "Westlands": ["Mountain View", "Parklands", "Kangemi"],
+      "Lang'ata": ["Karen", "South C", "Nairobi West"]
+    }
+  },
+  "Coast": {
+    "Mombasa": {
+      "Changamwe": ["Port Reitz", "Chaani", "Miritini"],
+      "Kisauni": ["Bamburi", "Mwakirunge", "Shanzu"]
+    },
+    "Kwale": {
+      "Matuga": ["Tsimba Golini", "Kubo South", "Mkongani"]
+    }
+  },
+  "Eastern": {
+    "Meru": {
+      "Imenti North": ["Municipality", "Nyaki West", "Nyaki East"],
+      "Imenti South": ["Abothuguchi Central", "Abothuguchi West", "Nkuene"]
+    },
+    "Embu": {
+      "Manyatta": ["Ruguru Ngandori", "Kithimu", "Nginda"]
+    }
+  },
+  "Western": {
+    "Kakamega": {
+      "Lurambi": ["Shirere", "Mahiakalo", "Sheywe"],
+      "Shinyalu": ["Murhanda", "Isukha East", "Isukha West"]
+    },
+    "Bungoma": {
+      "Kanduyi": ["Township", "Bukembe East", "Bukembe West"]
+    }
+  },
+  "Nyanza": {
+    "Kisumu": {
+      "Kisumu Central": ["Market Milimani", "Railways", "Kondele"],
+      "Nyando": ["Ahero", "Kobura", "Awasi/Onjiko"]
+    },
+    "Siaya": {
+      "Bondo": ["West Yimbo", "Central Sakwa", "South Sakwa"]
+    }
+  },
+  "Rift Valley": {
+    "Uasin Gishu": {
+      "Turbo": ["Kapseret", "Kesses", "Ziwa"],
+      "Ainabkoi": ["Kapsoya", "Ainabkoi/Olare", "Kaptagat"]
+    }
+  },
+  "North Eastern": {
+    "Garissa": {
+      "Balambala": ["Saka", "Balambala", "Danyere"],
+      "Fafi": ["Bura", "Dekaharia", "Jarajila"]
+    }
+  }
+};
+
+function loadCounties() {
+  const region = document.getElementById("region").value;
+  const countySelect = document.getElementById("county");
+  countySelect.innerHTML = `<option>Select County</option>`;
+
+  if (locations[region]) {
+    Object.keys(locations[region]).forEach(county => {
+      countySelect.innerHTML += `<option>${county}</option>`;
+    });
+  }
+}
+
+function loadConstituencies() {
+  const region = document.getElementById("region").value;
+  const county = document.getElementById("county").value;
+  const constituencySelect = document.getElementById("constituency");
+  constituencySelect.innerHTML = `<option>Select Constituency</option>`;
+
+  if (locations[region] && locations[region][county]) {
+    Object.keys(locations[region][county]).forEach(constituency => {
+      constituencySelect.innerHTML += `<option>${constituency}</option>`;
+    });
+  }
+}
+
+function loadWards() {
+  const region = document.getElementById("region").value;
+  const county = document.getElementById("county").value;
+  const constituency = document.getElementById("constituency").value;
+  const wardSelect = document.getElementById("ward");
+  wardSelect.innerHTML = `<option>Select Ward</option>`;
+
+  if (locations[region] && locations[region][county] && locations[region][county][constituency]) {
+    locations[region][county][constituency].forEach(ward => {
+      wardSelect.innerHTML += `<option>${ward}</option>`;
+    });
+  }
+}
+
+function confirmLocation() {
+  const region = document.getElementById("region").value;
+  const county = document.getElementById("county").value;
+  const constituency = document.getElementById("constituency").value;
+  const ward = document.getElementById("ward").value;
+
+  if (region === "Select Region" || county === "Select County" || constituency === "Select Constituency" || ward === "Select Ward") {
+    alert("Please select your full location.");
+  } else {
+    alert(`Location Confirmed! Redirecting to Candidate Selection...`);
+    setTimeout(() => {
+      window.location.href = "candidates.html";
+    }, 1000);
+  }
+}
+</script>
+  </body>
+</html>

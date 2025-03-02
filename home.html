@@ -1,0 +1,197 @@
+<!DIOCTYPE html>
+  <html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+	  <title>True Vote</title>
+<style>
+  body {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-margin: 50px;
+  text-align: center;
+  
+  }
+  video {
+  margin: 20px;
+  display: block;
+  border-radius: 20px;
+  margin: 35px;
+  animation: slide 5s ease-in-out;
+  text-align: center;
+  }
+  @keyframes slide {
+  from {
+  transform: translateX(-100);
+  opacity: 0;
+  }
+  to {
+  transform: translateX(0);
+  opacity: 1;
+  }
+  }
+  h1 {
+  animation: slide 2s ease-in-out;
+  color: black;
+  text-align: center;
+  }
+  button {
+  background: #01874D;
+  color: white;
+  padding: 15px 20px;
+  border: ;
+  border-radius: 20px;
+  cursor: pointer;
+  }
+  button:hover {
+  background: ;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  bacground-color: green;
+  color: white;
+  }
+  .navbar h1 {
+  margin: 0;
+  text-align: center;
+  }
+  .option-btn {
+  cursor: pointer;
+  font-size: 30px;
+  transition: transform o.4s ease, color o.3s ease;
+  display: inline-block;
+  }
+  .option-btn:hover {
+  color: yellow;
+  }
+  .rotate {
+  transform: rotate(180deg);
+  }
+  .menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
+  border-radius: 5px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1;
+  }
+  .menu a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  boder-bottom: 1px solid #ccc;
+  transition: background 0.3s ease;
+  }
+  .menu a:hover {
+  background-color:green;
+  color: white;
+  }
+  @keyframes fadeIn {
+  from {
+  opacity: 0;
+  transform: translateY(-10px);
+  }
+  to {
+  opacity: 1;
+  transform: translateY(0);
+  }
+  }
+  .footer {
+  justify-content: space-between;
+  padding: 10px;
+  }
+</style>
+<body>
+
+  <div class="navbar">
+	<h1>True Vote</h1>
+	<div class="option-btn" onclick="toggleMenu()">☰</div>
+  </div>
+  
+	  <div class="menu" id="menu">
+		<a href="#">Home</a>
+		<a href="#">About us</a>
+		<a href="#">Contact us</a>
+	  </div>
+	  
+<div>
+<video width="320" height="240" controls>
+  <source src="/storage/emulated/0/True-vote/truevote.zip" type="video/mp4">
+  </video>
+</div>
+	</head>
+	
+	<!--Info Section -->
+	  <div class="info">
+		<h2>About Online Voting</h2>
+		<p>Online is a modern approach to elections, allowing voters to cast their ballots securely over the internet.It eliminates the need of physical polling stations,reduces cost and enhance accessibility.</p>
+		<h2>Why Online Voting Matters</h2>
+		<ul>
+		  <li><strong>Convinience:</strong>
+			vote from anywhere, anytime</li>
+		  <li><strong>Security:</strong>
+			Advanced encryption and authentication methods ensure safety</li>
+		  <li><strong>Transparency:</strong>
+			Real-time tracking and audit logs for accountability</li>
+		  <li><strong>Inclusion:</strong>
+			Provides easier access for people with dissabilites and those in remote areas</li>
+		  <li><strong>Faster Results:</strong>
+			Automated counting speeds up election processes</li>
+		</ul>
+	  </div>
+		<div>
+	<button onclick="button()">Get Started</button>
+	</div>
+	<footer>
+	  <div class="footer">
+		© 2025 True Vote |@truevote319@gmail.com |Contact:0116225435
+	  </div>
+	</footer>
+
+<script>
+    // Toggle Menu Function
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        var button = document.querySelector('.option-btn');
+        var sound = document.getElementById("clickSound");
+
+        // Play sound
+        sound.play();
+
+        // Rotation Animation
+        button.classList.toggle("rotate");
+
+        // Menu Dropdown
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
+        }
+    }
+
+    // Close Menu When Clicking Outside
+    window.onclick = function (event) {
+        var menu = document.getElementById("menu");
+        var button = document.querySelector('.option-btn');
+        
+        if (event.target !== menu && event.target !== button) {
+            menu.style.display = "none";
+            button.classList.remove("rotate");
+        }
+	//redirectig after clicking 
+	window.location.href = "signup.html";
+	}
+	</script>
+  </body>
+  </html>

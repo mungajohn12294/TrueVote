@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Vote Confirmation</title>
+<style>
+  body {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
+  .box {
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Arial, sans-serif;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    border-radius: 50px;
+    margin-top: 100px;
+    box-shadow: 0 0 20px rgba(250, 0, 255, 0.9);
+  }
+  .box button {
+    background-color: #01974D;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .box img {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  .footer {
+    margin-top: 150px;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<div class="box">
+  <h2>Vote Confirmation</h2>
+  <p>Your Vote Has Been Successfully Submitted!</p>
+  <p>Blockchain Hash:</p>
+  <div id="hash" style="color: #01974D;"></div>
+  <p>QR Code:</p>
+  <img id="qrCode" alt="QR Code">
+  <button onclick="window.location.href='verification.html'">Finish</button>
+</div>
+<footer>
+  <div class="footer">
+    © 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
+  </div>
+</footer>
+
+<script>
+  async function generateHash() {
+    const voterData = "VoterData" + Date.now();
+    const hash = await sha256(voterData);
+    document.getElementById("hash").innerText = hash;
+    generateQRCode(hash);
+  }
+
+  async function sha256(data) {
+    const encoder = new TextEncoder();
+    const buffer = await crypto.subtle.digest("SHA-256", encoder.encode(data));
+    return Array.from(new Uint8Array(buffer))
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  function generateQRCode(text) {
+    const url = `https://api.qrserver.com/v1/create-qr-code/?data=${text}&size=150x150`;
+    document.getElementById("qrCode").src = url;
+  }
+
+  window.onload = generateHash;
+</script>
+</body>
+</html>

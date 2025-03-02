@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Vote Verification</title>
+<style>
+  body {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: white;
+  }
+  .box {
+    margin-top: 100px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(250, 0, 255, 0.9);
+  }
+  button {
+    background-color: #01974D;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="box">
+  <h2>Vote Verification</h2>
+  <p id="result"></p>
+  <button onclick="window.location.href='thankyou.html'">Home</button>
+</div>
+
+<script>
+  function verifyHash() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hash = urlParams.get("hash");
+    const storedHash = localStorage.getItem("voterHash");
+
+    if (hash === storedHash) {
+      document.getElementById("result").innerText = "Vote Verified Successfully ✅";
+    } else {
+      document.getElementById("result").innerText = "Invalid Vote ❌";
+    }
+  }
+
+  window.onload = verifyHash;
+  function verifyHash() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const hash = urlParams.get("hash");
+  const storedHash = atob(localStorage.getItem("voterHash")); // Decrypt Hash
+
+  if (hash === storedHash) {
+    document.getElementById("result").innerText = "✅ Vote Verified Successfully";
+  } else {
+    document.getElementById("result").innerText = "❌ Invalid Vote";
+  }
+}
+</script>
+</body>
+</html>
