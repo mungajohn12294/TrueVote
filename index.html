@@ -1,220 +1,288 @@
-<!DIOCTYPE html>
-  <html lang="en">
-	<head>
-	  <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width">
-	  <title>True Vote</title>
-<style>
-  body {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-margin: 50px;
-  text-align: center;
-  
-  }
-  video {
-  margin: 20px;
-  display: block;
-  border-radius: 20px;
-  margin: 35px;
-  animation: slide 5s ease-in-out;
-  text-align: center;
-  }
-  @keyframes slide {
-  from {
-  transform: translateX(-100);
-  opacity: 0;
-  }
-  to {
-  transform: translateX(0);
-  opacity: 1;
-  }
-  }
-  h1 {
-  animation: slide 2s ease-in-out;
-  color: black;
-  text-align: center;
-  }
-  button {
-  background: #01874D;
-  color: white;
-  padding: 15px 20px;
-  border: ;
-  border-radius: 20px;
-  cursor: pointer;
-  }
-  button:hover {
-  background: ;
-  padding: 15px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
-  border-radius: 10px;
-  }
-  .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  bacground-color: green;
-  color: white;
-  }
-  .navbar h1 {
-  margin: 0;
-  text-align: center;
-  }
-  .option-btn {
-  cursor: pointer;
-  font-size: 30px;
-  transition: transform o.4s ease, color o.3s ease;
-  display: inline-block;
-  }
-  .option-btn:hover {
-  color: yellow;
-  }
-  .rotate {
-  transform: rotate(180deg);
-  }
-  .menu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
-  border-radius: 5px;
-  overflow: hidden;
-  animation: fadeIn 0.3s ease-in-out;
-  z-index: 1;
-  }
-  .menu a {
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  boder-bottom: 1px solid #ccc;
-  transition: background 0.3s ease;
-  }
-  .menu a:hover {
-  background-color:green;
-  color: white;
-  }
-  @keyframes fadeIn {
-  from {
-  opacity: 0;
-  transform: translateY(-10px);
-  }
-  to {
-  opacity: 1;
-  transform: translateY(0);
-  }
-  }
-  .footer {
-  justify-content: space-between;
-  padding: 10px;
-  }
-</style>
-<body>
+<!DOCTYPE html>
+<html lang="en">
 
-  <div class="navbar">
-	<h1>True Vote</h1>
-	<div class="option-btn" onclick="toggleMenu()">☰</div>
-  </div>
-  
-	  <div class="menu" id="menu">
-		<a href="#">Home</a>
-		<a href="#">About us</a>
-		<a href="#">Contact us</a>
-	  </div>
-	  
-<div>
-<video width="320" height="240" controls>
-  <source src="/storage/emulated/0/True-vote/truevote.zip" type="video/mp4">
-  </video>
-</div>
-	</head>
-	
-	<!--Info Section -->
-	  <div class="info">
-		<h2>About Online Voting</h2>
-		<p>Online is a modern approach to elections, allowing voters to cast their ballots securely over the internet.It eliminates the need of physical polling stations,reduces cost and enhance accessibility.</p>
-		<h2>Why Online Voting Matters</h2>
-		<ul>
-		  <li><strong>Convinience:</strong>
-			vote from anywhere, anytime</li>
-		  <li><strong>Security:</strong>
-			Advanced encryption and authentication methods ensure safety</li>
-		  <li><strong>Transparency:</strong>
-			Real-time tracking and audit logs for accountability</li>
-		  <li><strong>Inclusion:</strong>
-			Provides easier access for people with dissabilites and those in remote areas</li>
-		  <li><strong>Faster Results:</strong>
-			Automated counting speeds up election processes</li>
-		</ul>
-	  </div>
-		<div>
-	<button onclick="button()">Get Started</button>
-	</div>
-	<footer>
-	  <div class="footer">
-		© 2025 True Vote |@truevote319@gmail.com |Contact:0116225435
-	  </div>
-	</footer>
-
-<script>
-    // Toggle Menu Function
-    function toggleMenu() {
-        var menu = document.getElementById("menu");
-        var button = document.querySelector('.option-btn');
-        var sound = document.getElementById("clickSound");
-
-        // Play sound
-        sound.play();
-
-        // Rotation Animation
-        button.classList.toggle("rotate");
-
-        // Menu Dropdown
-        if (menu.style.display === "block") {
-            menu.style.display = "none";
-        } else {
-            menu.style.display = "block";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale">
+    <title>True Vote</title>
+    <style>
+        * {
+            box-sizing: border-box;
         }
-    }
-
-    // Close Menu When Clicking Outside
-    window.onclick = function (event) {
-        var menu = document.getElementById("menu");
-        var button = document.querySelector('.option-btn');
+        /* Position the image container (needed to position the left and right arrows) */
         
-        if (event.target !== menu && event.target !== button) {
-            menu.style.display = "none";
-            button.classList.remove("rotate");
+        .container {
+            position: relative;
         }
-	//redirectig after clicking 
-	window.location.href = "signup.html";
-	}
-	</script>
-	<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        /* Hide the images by default */
+        
+        .mySlides {
+            display: none;
+        }
+        /* Add a pointer when hovering over the thumbnail images */
+        
+        .cursor {
+            cursor: pointer;
+        }
+        /* Next & previous buttons */
+        
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        /* Position the "next button" to the right */
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        /* On hover, add a black background color with a little bit see-through */
+        
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        /* Number text (1/3 etc) */
+        
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        /* Container for image text */
+        
+        .caption-container {
+            text-align: center;
+            background-color: #222;
+            padding: 2px 16px;
+            color: white;
+        }
+        
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Six columns side by side */
+        
+        .column {
+            float: left;
+            width: 16.66%;
+        }
+        /* Add a transparency effect for thumnbail images */
+        
+        .demo {
+            opacity: 0.6;
+        }
+        
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+        
+        .icon-bar {
+            width: 90px;
+            /* Set a specific width */
+            background-color: #555;
+            /* Dark-grey background */
+        }
+        
+        .icon-bar a {
+            display: block;
+            /* Make the links appear below each other instead of side-by-side */
+            text-align: center;
+            /* Center-align text */
+            padding: 16px;
+            /* Add some padding */
+            transition: all 0.3s ease;
+            /* Add transition for hover effects */
+            color: white;
+            /* White text color */
+            font-size: 36px;
+            /* Increased font-size */
+        }
+        
+        .icon-bar a:hover {
+            background-color: #000;
+            /* Add a hover color */
+        }
+        
+        .active {
+            background-color: #04AA6D;
+            /* Add an active/current color */
+        }
+    </style>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyARgeikrhrZb_r5aglRagi8rxsI1Bj8C5o",
-    authDomain: "truevote-5be7c.firebaseapp.com",
-    projectId: "truevote-5be7c",
-    storageBucket: "truevote-5be7c.firebasestorage.app",
-    messagingSenderId: "754331659689",
-    appId: "1:754331659689:web:64914424df26ed6543e8b8",
-    measurementId: "G-5LJLDMLL64"
-  };
+    <!-- Container for the image gallery -->
+    <div class="container">
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>  
-  </body>
-  </html>
+        <!-- Full-width images with number text -->
+        <div class="mySlides">
+            <div class="numbertext">1 / 6</div>
+            <img src="image/pic1.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 6</div>
+            <img src="image/pic2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 6</div>
+            <img src="image/pic3.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">4 / 6</div>
+            <img src="image/pic6.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">5 / 6</div>
+            <img src="image/pic4.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">6 / 6</div>
+            <img src="image/pic5.jpg" style="width:100%">
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Image text -->
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <!-- Thumbnail images -->
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="image/pic1.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/pic2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/pic3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/pic6.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/pic4.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/pic5.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+            </div>
+        </div>
+    </div>
+    <!-- Info Section -->
+    <div class="info">
+        <h2>About Online Voting</h2>
+        <p>Online is a modern approach to elections, allowing voters to cast their ballots securely over the internet. It eliminates the need for physical polling stations, reduces costs, and enhances accessibility.</p>
+        <h2>Why Online Voting Matters</h2>
+        <ul>
+            <li><strong>Convenience:</strong> Vote from anywhere, anytime</li>
+            <li><strong>Security:</strong> Advanced encryption and authentication methods ensure safety</li>
+            <li><strong>Transparency:</strong> Real-time tracking and audit logs for accountability</li>
+            <li><strong>Inclusion:</strong> Provides easier access for people with disabilities and those in remote areas</li>
+            <li><strong>Faster Results:</strong> Automated counting speeds up election processes</li>
+        </ul>
+    </div>
+
+    <div>
+        <button onclick="window.location.href='signup.html'">Get Started</button>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <!-- Add icon library -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <div class="icon-bar">
+                <a class="active" href="#"><i class="fa fa-home"></i></a>
+                <a href="#"><i class="fa fa-search"></i></a>
+                <a href="#"><i class="fa fa-envelope"></i></a>
+                <a href="#"><i class="fa fa-globe"></i></a>
+                <a href="#"><i class="fa fa-trash"></i></a>
+            </div>
+            © 2025 True Vote | @truevote319@gmail.com | Contact: 0116225435
+        </div>
+    </footer>
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("demo");
+            let captionText = document.getElementById("caption");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+
+        // Firebase Configuration
+        import {
+            initializeApp
+        } from "firebase/app";
+        import {
+            getAnalytics
+        } from "firebase/analytics";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvSPu7QHdcPNDoTBCdVElgqhxyaRRPWn4",
+            authDomain: "truevote-2a5a8.firebaseapp.com",
+            databaseURL: "https://truevote-2a5a8-default-rtdb.firebaseio.com",
+            projectId: "truevote-2a5a8",
+            storageBucket: "truevote-2a5a8.firebasestorage.app",
+            messagingSenderId: "204518176663",
+            appId: "1:204518176663:web:a1c5df06c561218cf736d2",
+            measurementId: "G-PQ6ZXB1F8K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    </body>
+
+</html>

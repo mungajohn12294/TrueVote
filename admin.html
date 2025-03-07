@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #01974D;
+            text-align: center;
+        }
+        
+        th {
+            background: #01974D;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #01974D;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        
+        button:hover {
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+    <button onclick="fetchData()">View Voter Activities</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>Phone Number</th>
+                <th>Timestamp</th>
+                <th>Votes</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="voterData"></tbody>
+    </table>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"; import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js"; const firebaseConfig = { apiKey: "AIzaSyCvSPu7QHdcPNDoTBCdVElgqhxyaRRPWn4",
+        authDomain: "truevote-2a5a8.firebaseapp.com", databaseURL: "https://truevote-2a5a8-default-rtdb.firebaseio.com", projectId: "truevote-2a5a8", storageBucket: "truevote-2a5a8.appspot.com", messagingSenderId: "204518176663", appId: "1:204518176663:web:a1c5df06c561218cf736d2",
+        measurementId: "G-PQ6ZXB1F8K" }; const app = initializeApp(firebaseConfig); const database = getDatabase(app); async function fetchData() { const voterRef = ref(database, 'votes'); const snapshot = await get(voterRef); if (snapshot.exists()) {
+        let table = ""; snapshot.forEach((childSnapshot) => { const voter = childSnapshot.val(); table += `
+        <tr>
+            <td>${childSnapshot.key}</td>
+            <td>${voter.phoneNumber}</td>
+            <td>${voter.timestamp}</td>
+            <td>${JSON.stringify(voter)}</td>
+            <td>${voter.region}, ${voter.county}, ${voter.ward}</td>
+        </tr>
+        `; }); document.getElementById("voterData").innerHTML = table; } else { alert("No Voter Activities Found!"); } }
+    </script>
+</body>
+
+</html>

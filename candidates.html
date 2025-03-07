@@ -1,188 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
+<DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Selection - True Vote</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ffffff, #01874D);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .container {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            border: 2px solid #000;
-            border-radius: 10px;
-            overflow-y: auto;
-            max-height: 90vh;
-        }
-        
-        .candidate {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin: 10px 0;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
-        
-        .candidate img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        
-        input[type="radio"] {
-            transform: scale(1.5);
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #10c856;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            margin-top: 15px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .submit-btn:hover {
-            background-color: #0fa045;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h2 class="text-2xl font-bold text-center mb-4">Select Your Candidates</h2>
-
-        <div id="positions"></div>
-
-        <button onclick="submitVote()" class="submit-btn">Submit Vote</button>
-    </div>
-
-    <script>
-        const candidates = {
-            'President': [{
-                name: 'John Munga',
-                party: 'Green Party',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'John Chris',
-                party: 'Progress Party',
-                img: 'https://via.placeholder.com/50'
-            }],
-            'Governor': [{
-                name: 'Eddy Mureithi',
-                party: 'Unity Party',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'Bob White',
-                party: 'Freedom Party',
-                img: 'https://via.placeholder.com/50'
-            }],
-            'Senator': [{
-                name: 'Joseph Kamande',
-                party: 'Justice Party',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'Clack Omondi',
-                party: 'People’s Voice',
-                img: 'https://via.placeholder.com/50'
-            }],
-            'Women Rep': [{
-                name: 'Emilly Jane',
-                party: 'Equality Party',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'Diana Mwaura',
-                party: 'Progressive Alliance',
-                img: 'https://via.placeholder.com/50'
-            }],
-            'MP': [{
-                name: 'Emmanuel Mwangi',
-                party: 'Democratic Party',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'Calistu Dripper',
-                party: 'United Front',
-                img: 'https://via.placeholder.com/50'
-            }],
-            'MCA': [{
-                name: 'Isaac Mbogo',
-                party: 'New Generation',
-                img: 'https://via.placeholder.com/50'
-            }, {
-                name: 'Stephen Charagu',
-                party: 'Community First',
-                img: 'https://via.placeholder.com/50'
-            }]
-        };
-
-        function renderCandidates() {
-            const container = document.getElementById("positions");
-            container.innerHTML = "";
-
-            for (const position in candidates) {
-                let html = `<h3 class='text-xl font-semibold mt-4'>${position}</h3>`;
-                candidates[position].forEach((candidate) => {
-                    html += `
-                        <div class="candidate">
-                            <img src="${candidate.img}" alt="${candidate.name}">
-                            <span>${candidate.name} (${candidate.party})</span>
-                            <input type="radio" name="${position}" value="${candidate.name}">
-                        </div>
-                    `;
-                });
-                container.innerHTML += html;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Candidate Selection</title>
+        <style>
+            body {
+                background-color: rgba(0, 0, 0, 0.7);
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
             }
-        }
+            
+            .container {
+                background: rgba(0, 0, 0, 0.3);
+                padding: 20px;
+                border-radius: 50px;
+                box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+                margin-bottom: 20px;
+            }
+            
+            h2,
+            h3 {
+                color: #01974D;
+            }
+            
+            .candidate {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                border-radius: 20px;
+                margin-bottom: 10px;
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            }
+            
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            
+            label {
+                flex: 1;
+                text-align: left;
+                color: white;
+            }
+            
+            input {
+                cursor: pointer;
+            }
+            
+            button {
+                background-color: #01974D;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+            
+            button:hover {
+                background-color: black;
+                box-shadow: 0 0 20px rgba(0, 250, 255, 0.5);
+            }
+        </style>
+    </head>
 
-        function submitVote() {
-            let selections = {};
-            let allSelected = true;
+    <body>
+        <h2>Select Your Candidates</h2>
 
-            for (const position in candidates) {
-                const selected = document.querySelector(`input[name='${position}']:checked`);
-                if (selected) {
-                    selections[position] = selected.value;
-                } else {
-                    allSelected = false;
+        <form id="voteForm">
+            <div class="container">
+                <h3>President</h3>
+                <div class="candidate">
+                    <img src="image/background1.jpg" alt="">
+                    <label>John Doe (Green Party)</label>
+                    <input type="radio" name="president" value="John Doe">
+                </div>
+                <div class="candidate">
+                    <img src="president2.jpg" alt="">
+                    <label>Scott mungai (Progress Party)</label>
+                    <input type="radio" name="president" value="Jane Smith">
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Governor</h3>
+                <div class="candidate">
+                    <img src="governor1.jpg" alt="">
+                    <label>Alice Brown (Unity Party)</label>
+                    <input type="radio" name="governor" value="Alice Brown">
+                </div>
+                <div class="candidate">
+                    <img src="governor2.jpg" alt="">
+                    <label>Bob White (Freedom Party)</label>
+                    <input type="radio" name="governor" value="Bob White">
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Senator</h3>
+                <div class="candidate">
+                    <img src="senator1.jpg" alt="">
+                    <label>Charlie Black (Justice Party)</label>
+                    <input type="radio" name="senator" value="Charlie Black">
+                </div>
+                <div class="candidate">
+                    <img src="senator2.jpg" alt="">
+                    <label>David Grey (People's Voice)</label>
+                    <input type="radio" name="senator" value="David Grey">
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Women Rep</h3>
+                <div class="candidate">
+                    <img src="womenrep1.jpg" alt="">
+                    <label>Grace Mumbi (Justice Party)</label>
+                    <input type="radio" name="womenrep" value="Grace Mumbi">
+                </div>
+                <div class="candidate">
+                    <img src="womenrep2.jpg" alt="">
+                    <label>Ann Akinyi (Unity Party)</label>
+                    <input type="radio" name="womenrep" value="Ann Akinyi">
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>MP</h3>
+                <div class="candidate">
+                    <img src="mp1.jpg" alt="">
+                    <label>Joseph Kamau (Unity Party)</label>
+                    <input type="radio" name="mp" value="Joseph Kamau">
+                </div>
+                <div class="candidate">
+                    <img src="image/governor.jpg" alt="">
+                    <label>Isaac Omondi (People's Party)</label>
+                    <input type="radio" name="mp" value="Isaac Omondi">
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>MCA</h3>
+                <div class="candidate">
+                    <img src="image/candidate1.jpg" alt="">
+                    <label>Michael Otieno (Development Party)</label>
+                    <input type="radio" name="mca" value="Michael Otieno">
+                </div>
+                <div class="candidate">
+                    <img src="image/candidate2.jpg" alt="">
+                    <label>Esther Nyambura (Vision Party)</label>
+                    <input type="radio" name="mca" value="Esther Nyambura">
+                </div>
+            </div>
+
+            <button type="button" onclick="submitVote()">Submit Vote</button>
+        </form>
+        <footer>
+            <div class="footer">
+                © 2025 True Vote |@truevote319@gmail.com |Contact:0116225435
+            </div>
+        </footer>
+
+
+        <script>
+            function submitVote() {
+                const form = document.getElementById('voteForm');
+                const fields = ['president', 'governor', 'senator', 'womenrep', 'mp', 'mca'];
+                let valid = true;
+
+                for (let field of fields) {
+                    const selected = document.querySelector(`input[name="${field}"]:checked`);
+                    if (!selected) {
+                        valid = false;
+                        alert(`Please select a candidate for ${field}`);
+                        break;
+                    }
+                }
+
+                if (valid) {
+                    ("Your votes have been submitted successfully!");
+                    setTimeout(() => {
+                        window.location.href = "blockchain.html";
+                    }, 1000);
                 }
             }
+        </script>
 
-            if (!allSelected) {
-                alert("Please select a candidate for each position.");
-                return;
-            }
-            alert("Vote submitted successfully!");
-            window.location.href = 'blockchain.html';
-        }
+    </body>
 
-        renderCandidates();
-    </script>
-</body>
-
-</html>
+    </html>

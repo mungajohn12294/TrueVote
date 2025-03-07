@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Surprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        
+        header,
+        footer {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px;
+        }
+        
+        h1,
+        h2 {
+            margin-top: 20px;
+        }
+        
+        #quiz,
+        #message,
+        #photos,
+        #countdown,
+        #game,
+        #contact {
+            display: none;
+        }
+        
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome, [Her Name]!</h1>
+    </header>
+
+    <main>
+        <h2>Photo Gallery</h2>
+        <div id="photos">
+            <img src="image/candidate2.jpg" alt="Memory 1" width="300">
+            <img src="photo2.jpg" alt="Memory 2" width="300">
+            <img src="photo3.jpg" alt="Memory 3" width="300">
+        </div>
+
+        <h2>Interactive Quiz</h2>
+        <div id="quiz">
+            <p>What is [Her Name]'s favorite color?</p>
+            <input type="text" id="answer">
+            <button class="button" onclick="checkAnswer()">Submit</button>
+            <div id="quiz-result"></div>
+        </div>
+
+        <h2>Countdown Timer</h2>
+        <div id="countdown"></div>
+
+        <h2>Game</h2>
+        <div id="game">
+            <p>Let's play tic-tac-toe!</p>
+            <!-- Tic-tac-toe game here -->
+        </div>
+
+        <h2>Contact Form</h2>
+        <div id="contact">
+            <form>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+                <button class="button" type="submit">Send</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Special Surprise for [Her Name]</p>
+    </footer>
+
+    <script>
+        // Show hidden elements
+        document.getElementById('photos').style.display = 'block';
+        document.getElementById('quiz').style.display = 'block';
+        document.getElementById('countdown').style.display = 'block';
+        document.getElementById('game').style.display = 'block';
+        document.getElementById('contact').style.display = 'block';
+
+        // Quiz function
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value.toLowerCase();
+            const result = document.getElementById('quiz-result');
+            if (answer === 'pink') {
+                result.innerHTML = 'Correct!';
+            } else {
+                result.innerHTML = 'Try again!';
+            }
+        }
+
+        // Countdown Timer
+        const countDownDate = new Date("Dec 31, 2025 23:59:59").getTime();
+        const countdown = document.getElementById('countdown');
+        const interval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            countdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            if (distance < 0) {
+                clearInterval(interval);
+                countdown.innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

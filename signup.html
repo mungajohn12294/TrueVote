@@ -1,114 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Signup</title>
-<style>
-  body {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-  }
-  .box {
-    color: rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 50px;
-    border-radius: 50px;
-    overflow: hidden;
-    margin-top: 100px;
-  }
-  .box input {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    margin: 5px 0;
-    padding: 10px;
-  }
-  .box input::placeholder {
-    color: #457475;
-  }
-  .box button {
-    background-color: #01974D;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  .box button:hover {
-    box-shadow: 0 0 20px rgba(250, 0, 255, 0.9);
-  }
-  .links {
-    display: flex;
-    justify-content: space-between;
-  }
-  .footer {
-    margin-top: 150px;
-  }
-</style>
-  </head>
-  <body>
-	<div class="box">
-	  <h2>Register</h2>
-	  <input type="tel" id="idNumber" placeholder="Id Number" Id="idNumber" maxlength="7">
-	  <input type="tel" id="voterNumber" placeholder="Voter Number" Id="voterNunber" maxlength="8">
-	  <input type="tel" id="phoneNumber" placeholder="Phone Number" Id="phoneNumber" maxlength="10">
-	  <div class="password-box">
-		<input type="password" id="password" placeholder="Password" Id="password" maxlength="8">
-	  </div>
-	  <button onclick="Register()">Register</button>
-	  <div class="links">
-		<a href="thankyou.html">Forgot Password</a>
-		<a href="thankyou.html">Login</a>
-	  </div>
-	</div>
 
-	<footer>
-	  <div class="footer">
-		© 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
-	  </div>
-	</footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale">
+    <title>Signup</title>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        
+        .box {
+            color: rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            border-radius: 50px;
+            overflow: hidden;
+            margin-top: 100px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        .box input {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 5px 0;
+            padding: 10px;
+        }
+        
+        .box input::placeholder {
+            color: #457475;
+        }
+        
+        .box button {
+            background-color: #01974D;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .box button:hover {
+            background-color: black;
+            box-shadow: 0 0 20px rgba(0, 250, 255, 0.9);
+        }
+        
+        .links {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer {
+            margin-top: 150px;
+        }
+    </style>
+</head>
 
-<script>
-  function Register() {
-    const idNumber = document.getElementById('idNumber').value;
-    const voterNumber = document.getElementById('voterNumber').value;
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    const password = document.getElementById('password').value;
+<body>
+    <div class="box">
+        <h2>Register</h2>
+        <input type="tel" id="idNumber" placeholder="Id Number" maxlength="7">
+        <input type="tel" id="voterNumber" placeholder="Voter Number" maxlength="8">
+        <input type="tel" id="phoneNumber" placeholder="Phone Number" maxlength="10">
+        <div class="password-box">
+            <input type="password" id="password" placeholder="Password" maxlength="8">
+        </div>
+        <button onclick="Register()">Register</button>
+        <div class="links">
+            <a href="thankyou.html">Forgot Password</a>
+            <a href="thankyou.html">Login</a>
+        </div>
+    </div>
 
-    if (idNumber && voterNumber && phoneNumber && password) {
-      alert("Registration Successful! Redirecting to OTP...");
-      setTimeout(() => {
-        window.location.href = 'opt.html'; // Fixed redirection
-      }, 1000);
-    } else {
-      alert("Please fill all fields!");
-    }
-  }
-</script>
-	<script>
-  function registerVoter() {
-    var voterID = document.getElementById("voterID").value;
-    var phone = document.getElementById("phone").value;
-    var 
+    <footer>
+        <div class="footer">
+            © 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
+        </div>
+    </footer>
 
-    const db = getDatabase();
-    const voterRef = ref(db, 'voters/' + voterID);
+    <script>
+        function Register() {
+            const idNumber = document.getElementById('idNumber').value;
+            const voterNumber = document.getElementById('voterNumber').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
 
-    set(voterRef, {
-      phone: phone,
-      time: new Date().toISOString()
-    }).then(() => {
-      alert("Voter Registered Successfully!");
-    }).catch((error) => {
-      console.error("Error: ", error);
-    });
-  }
-</script>
+            if (idNumber && voterNumber && phoneNumber && password) {
+                ("Loading...");
+                setTimeout(() => {
+                    window.location.href = 'opt.html'; // Fixed redirection
+                }, 1000);
+            } else {
+                alert("Please fill all fields!");
+            }
+        }
+    </script>
+</body>
 
-<input type="text" id="voterID" placeholder="Voter ID">
-<input type="text" id="phone" placeholder="Phone Number">
-<button onclick="registerVoter()">Register</button>  
-  </body>
 </html>

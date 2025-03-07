@@ -1,76 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<title>OPT Verification</title>
-<style>
-  body {
-    background: rgba(0, 0, 0, 0.6);
-    text-align: center;
-  }
-  .box {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 30px;
-    margin: 20px;
-    margin-top: 200px;
-  }
-  input {
-    padding: 10px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(0, 100, 50, 0.9);
-    border: none;
-    outline: none;
-  }
-  button {
-    background-color: #01874D;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  button:hover {
-    background-color: black;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    border-radius: 10px;
-  }
-  .footer {
-    margin-top: 210px;
-    color: white;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>OPT Verification</title>
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        
+        .box {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 30px;
+            margin: 20px;
+            margin-top: 200px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        input {
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 100, 50, 0.9);
+            border: none;
+            outline: none;
+        }
+        
+        button {
+            background-color: #01874D;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        button:hover {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 20px rgba(0, 250, 255, 0.5);
+            border-radius: 10px;
+        }
+        
+        .footer {
+            margin-top: 250px;
+            color: black;
+        }
+    </style>
 </head>
+
 <body>
-<div class="box">
-  <h2>Enter OTP Number Sent To Your Phone Number</h2>
-  <input type="tel" placeholder="OTP Number" maxlength="6" id="otp">
-  <div class="button">
-    <button onclick="verify()">Verify</button>
-  </div>
-</div>
+    <div class="box">
+        <h2>Enter OTP Number Sent To Your Phone Number</h2>
+        <input type="tel" placeholder="OTP Number" id="otp" maxlength="6">
+        <div class="button">
+            <button onclick="verify()">Verify</button>
+        </div>
+    </div>
 
-<div class="footer">
-  <footer>
-    © 2025 True Vote | truevote319@gmail.com | Contact: 0116225435
-  </footer>
-</div>
+    <div class="footer">
+        <footer>
+            © 2025 True Vote | truevote319@gmail.com | Contact: 0116225435
+        </footer>
+    </div>
+    <script>
+        function verify() {
+            const otp = document.getElementById("otp").value;
+            if (otp === "") {
+                alert("Please enter your OTP");
+            } else if (otp.length < 6) {
+                alert("OTP must be 6 digits");
+            } else {
+                window.location.href = "biometric.html";
+            }
+        }
 
-<script>
-  function verify() {
-    const otp = document.getElementById("otp").value;
-    if (otp === "") {
-      alert("Please enter your OTP number");
-    } else if (otp.length < 6) {
-      alert("OTP must be 6 digits");
-    } else {
-      window.location.href = "biometric.html";
-    }
-  }
-</script>
+        function generateHash() {
+            let voteData = "TrueVoteUser" + new Date().getTime();
+            let hash = btoa(voteData); // Simple Base64 Encoding
+            document.getElementById("hash").innerText = hash;
+
+            let qrCode = "https://api.qrserver.com/v1/create-qr-code/?data=" + hash + "&size=150x150";
+            document.getElementById("qrcode").src = qrCode;
+        }
+    </script>
 </body>
+
 </html>

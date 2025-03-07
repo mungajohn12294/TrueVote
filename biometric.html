@@ -1,127 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Biometric Verification</title>
-<style>
-  body {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-  }
-  .box {
-    color: rgba(0, 0, 0, 0.8);
-    font-family: Arial, sans-serif;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 30px;
-    border-radius: 50px;
-    margin-top: 100px;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-  }
-  .scanner {
-    width: 100px;
-    height: 100px;
-    background: url('scanner.png') no-repeat center center;
-    background-size: cover;
-    margin: 20px auto;
-    border: 5px solid #01974D;
-    border-radius: 50px;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-    position: relative;
-    cursor: pointer;
-  }
-  .thumb {
-    width: 50px;
-    height: 30px;
-    background: url('fingerprint-mock.png') no-repeat center center;
-    background-size: cover;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-  }
-  .box input {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  .box button {
-    background-color: #01974D;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  .box button:hover {
-    box-shadow: 0 0 20px rgba(250, 0, 255, 0.9);
-  }
-  .footer {
-    margin-top: 150px;
-  }
-</style>
-  </head>
-  <body>
-	<div class="box">
-	  <h2>Biometric Verification</h2>
-	  <p>Place your thumb on the scanner below</p>
 
-	  <div class="scanner" onclick="startScan()">
-		<div class="thumb" id="thumb"></div>
-	  </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Biometric Verification</title>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        
+        .box {
+            color: rgba(0, 0, 0, 0.8);
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 50px;
+            margin-top: 100px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        
+        .scanner {
+            width: 100px;
+            height: 100px;
+            background: url('scanner.png') no-repeat center center;
+            background-size: cover;
+            margin: 20px auto;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .thumb {
+            width: 50px;
+            height: 30px;
+            background: url('src="image/fingerprint".jpg') no-repeat center center;
+            background-size: cover;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            border-radius: 20px;
+        }
+        
+        .box input {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .box button {
+            background-color: #01974D;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .box button:hover {
+            background-color: black;
+            box-shadow: 0 0 20px rgba(0, 250, 255, 0.9);
+        }
+        
+        .footer {
+            margin-top: 150px;
+        }
+    </style>
+</head>
 
-	  <p id="scanMessage" style="color: green;"></p>
+<body>
+    <div class="box">
+        <h2>Biometric Verification</h2>
+        <p>Place your thumb on the scanner below</p>
 
-	  <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
-	  <p id="captchaDisplay" style="font-weight: bold; color: #01974D;"></p>
+        <div class="scanner" onclick="startScan()">
+            <div class="thumb" id="thumb"></div>
+            <img src="image/finger1.jpg" alt="thumb">
+        </div>
 
-	  <button onclick="verifyBiometric()">Verify</button>
-	</div>
+        <p id="scanMessage" style="color: green;"></p>
 
-	<footer>
-	  <div class="footer">
-		© 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
-	  </div>
-	</footer>
+        <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+        <p id="captchaDisplay" style="font-weight: bold; color: #01974D;"></p>
 
-<script>
-  let captcha;
+        <button onclick="verifyBiometric()">Verify</button>
+    </div>
 
-  function generateCaptcha() {
-    captcha = Math.floor(1000 + Math.random() * 9000);
-    document.getElementById("captchaDisplay").innerText = "CAPTCHA: " + captcha;
-  }
+    <footer>
+        <div class="footer">
+            © 2025 True Vote | @truevote319@gmail.com | contact: 0116225435
+        </div>
+    </footer>
 
-  function startScan() {
-    const thumb = document.getElementById("thumb");
-    const scanMessage = document.getElementById("scanMessage");
+    <script>
+        let captcha;
 
-    thumb.style.display = "block";
-    scanMessage.innerText = "Scanning Fingerprint...";
+        function generateCaptcha() {
+            captcha = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById("captchaDisplay").innerText = "CAPTCHA: " + captcha;
+        }
 
-    setTimeout(() => {
-      thumb.style.display = "none";
-      scanMessage.innerText = "Fingerprint Verified!";
-    }, 3000);
-  }
+        function startScan() {
+            const thumb = document.getElementById("thumb");
+            const scanMessage = document.getElementById("scanMessage");
 
-  function verifyBiometric() {
-    const userCaptcha = document.getElementById("captchaInput").value;
+            thumb.style.display = "block";
+            scanMessage.innerText = "Scanning Fingerprint...";
 
-    if (userCaptcha == captcha) {
-      alert("Verification Successful! Redirecting...");
-      setTimeout(() => {
-        window.location.href = "location.html"; // Redirect to location selection
-      }, 1000);
-    } else {
-      alert("Invalid CAPTCHA! Try again.");
-      generateCaptcha(); // Refresh CAPTCHA
-    }
-  }
+            setTimeout(() => {
+                thumb.style.display = "none";
+                scanMessage.innerText = "Fingerprint Verified!";
+            }, 3000);
+        }
 
-  // Generate CAPTCHA when page loads
-  window.onload = generateCaptcha;
-</script>
-  </body>
+        function verifyBiometric() {
+            const userCaptcha = document.getElementById("captchaInput").value;
+
+            if (userCaptcha == captcha) {
+                ("Verification Successful! Redirecting...");
+                setTimeout(() => {
+                    window.location.href = "location.html"; // Redirect to location selection
+                }, 1000);
+            } else {
+                alert("Invalid CAPTCHA! Try again.");
+                generateCaptcha(); // Refresh CAPTCHA
+            }
+        }
+
+        // Generate CAPTCHA when page loads
+        window.onload = generateCaptcha;
+    </script>
+</body>
+
 </html>
