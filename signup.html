@@ -51,11 +51,11 @@
   <body>
 	<div class="box">
 	  <h2>Register</h2>
-	  <input type="tel" id="idNumber" placeholder="Id Number" maxlength="7">
-	  <input type="tel" id="voterNumber" placeholder="Voter Number" maxlength="8">
-	  <input type="tel" id="phoneNumber" placeholder="Phone Number" maxlength="10">
+	  <input type="tel" id="idNumber" placeholder="Id Number" Id="idNumber" maxlength="7">
+	  <input type="tel" id="voterNumber" placeholder="Voter Number" Id="voterNunber" maxlength="8">
+	  <input type="tel" id="phoneNumber" placeholder="Phone Number" Id="phoneNumber" maxlength="10">
 	  <div class="password-box">
-		<input type="password" id="password" placeholder="Password" maxlength="8">
+		<input type="password" id="password" placeholder="Password" Id="password" maxlength="8">
 	  </div>
 	  <button onclick="Register()">Register</button>
 	  <div class="links">
@@ -91,6 +91,7 @@
   function registerVoter() {
     var voterID = document.getElementById("voterID").value;
     var phone = document.getElementById("phone").value;
+    var 
 
     const db = getDatabase();
     const voterRef = ref(db, 'voters/' + voterID);
